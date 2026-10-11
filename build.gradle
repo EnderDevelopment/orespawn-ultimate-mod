@@ -1,0 +1,84 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+
+group 'com.dd6896195'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://files.minecraftforge.net/maven'
+    }
+}
+
+ext.archivesName = "orespawnultimatemod-${version}.jar"
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                orespawnultimatemod {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.logging.markers', 'SERVER'
+            mods {
+                orespawnultimatemod {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+            mods {
+                orespawnultimatemod {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    compileOnly 'net.minecraftforge:forge:1.20.1-47.1.0'
+    implementation 'net.minecraftforge:minecraft:1.20.1'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.json'
+        include '**/*.png'
+        include '**/*.lang'
+    }
+}

@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL="https://github.com/dd6896195/orespawnultimatemod/issues"
+
+[[mods]]
+modId="orespawnultimatemod"
+version="1.0.0"
+displayName="OreSpawn Ultimate Mod"
+authors="dd6896195"
+description='''
+A comprehensive Minecraft mod featuring 50+ creatures, 10+ bosses, 20+ weapons/armor, 10+ custom ores/blocks, 15+ foods/items, 3+ dimensions, 15+ structures, and 20+ spells/abilities.
+'''
+
+[[dependencies.orespawnultimatemod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
